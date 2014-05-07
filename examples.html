@@ -1,0 +1,1453 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
+<head>
+<title>Tikslus Dialog examples</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/tikslusdialog.js"></script>
+<link rel="stylesheet" href="css/normalize.css" />
+<link rel="stylesheet" href="css/tikslusdialog.css" />
+<style>
+body{
+background-color:#fff;
+padding:20px;
+}
+</style>
+</head>
+<body>
+
+
+	<h1 class="main_heading">Tikslus Dialog</h1>
+                
+              
+                
+		
+<p>Tiklsus dialog is a jquery plugin which can show HTML content inside a popup box.
+<p>To use tikslus dialog in your project,download the zip file and extract it in any directory on your web server.</p>
+<p>Include jquery framework & tikslus dialog files:</p>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;link rel="stylesheet" href="tikslus_dialogs.css"/&gt;
+&lt;script language="javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+&lt;script language="javascript" src="tikslusdialog.js"&gt;&lt;/script&gt;
+</pre>
+
+<p> To show/open dialog window you need to call <b>tdialog function</b> inside &lt;script&gt;&lt;/script&gt; tags:</p>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#list1").click(function(e){
+  e.preventDefault();
+ $.fn.tdialog({
+ type:"window",
+ title:'Parameter list',
+ width:$.fn.tdialog.tScreenWidth(150),
+ height:500,
+ content:function(){
+ return $("#param_wrapper").html();
+ }
+  })
+ });
+&lt;/script&gt;
+</pre>
+
+<!--
+<p>
+<a href="#" id="list1">See list of all the parameters you can pass to tdialog function.</a>
+<script language="javascript">
+ $("#list1").click(function(e){
+  e.preventDefault();
+ $.fn.tdialog({
+ type:"window",
+ title:'Parameter list',
+ width:$.fn.tdialog.tScreenWidth(100),
+ height:$.fn.tdialog.tScreenHeight(250),
+ content:function(){
+ return $("#param_wrapper").html();
+ }
+  })
+ });
+</script>
+</p>
+-->
+<p>
+<h4>Examples</h4>
+<a href="#" id="info1">click here to open a dialog box</a>
+<script language="javascript">
+$("#info1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"info",
+ content:"This is an information dialog.",
+ title:"test",
+ icon:"info",
+ effect:'css3',
+ //css3EffectIn:'rotate-in',
+ //css3EffectOut:'rotate-out'
+   effect:'css3',
+ css3EffectIn:'flipY',
+ css3EffectOut:'bounce',
+         
+});
+});
+</script>
+</p>
+<p>To show an information dialog, you call tdialog function with these parameters:<p>
+<p>First create a link with id "info1" then call the tdialog function<p>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+$("#info1").click(function(){
+$.fn.tdialog({
+ type:"info",
+ content:"This is a information dialog.",
+ title:"test",
+ icon:"info",
+   effect:'css3',
+ css3EffectIn:'flipY',
+ css3EffectOut:'bounce',
+});
+});
+&lt;/script&gt;
+</pre>
+<p>To show an Information dialog, you need to set these paramters at least:</p>
+<ul>
+<li>
+<b>type</b>
+<br/>
+Type of the popup. 'info' if we have to display an information dialog. Can be 'info','confirm','window','prompt','alert','waring','error'
+</li>
+<li><b>content</b><br/>
+Body of the dialog goes here.
+</li>
+<li><b>title</b><br/>
+title of the dialog box
+</li>
+</ul>
+
+<a href="#" id="confirmation">click here to open a confirmation dialog</a>
+<script language="javascript">
+$("#confirmation").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"confirm",
+ content:"Are you sure, you will use tikslus dialog ?",
+ title:"Confirm",
+  effect:'css3',
+ css3EffectIn:'bench-in',
+ css3EffectOut:'bench-out',
+ icon:"confirm",
+ confirmCallback:function(){
+
+$.fn.tdialog({
+type:'info',
+content:'Hey, thanks for your support.',
+title:'Thanks',
+icon:'info',
+draggable:true
+})
+ }
+});
+});
+</script>
+<p>code for confirmation dialog:</p>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+$("#confirmation").click(function(){
+$.fn.tdialog({
+ type:"confirm",
+ content:"Are you sure, you will use tikslus dialog ?",
+ title:"Confirm",
+ icon:"confirm",
+  effect:'css3',
+ css3EffectIn:'bench-in',
+ css3EffectOut:'bench-out',
+ confirmCallback:function(){
+
+$.fn.tdialog({
+type:'info',
+content:'Hey, thanks for your support.',
+title:'Thanks',
+icon:'info',
+draggable:true
+})
+ }
+});
+});
+&lt;/script&gt;
+</pre>
+<b>Type & icon</b> parameters of the dialog should be 'confirm'. Also, you must provide 'confirmCallback' parameter.
+It takes any vaild function/callback function. confirmCallback function will be executed when someone presses 'confirm' button.
+If you don't provide 'confirmCallback' function, dialog will close when someone presses 'confirm' button.
+<p>
+<a href="#" id="prompt1">click here to open a 'Prompt' dialog</a>
+<script language="javascript">
+  $("#prompt1").click(function(e){
+  e.preventDefault();
+ $.fn.tdialog({
+ type:"prompt",
+ title:'Name',
+ content:"enter your name",
+ promptCallback:function(){
+ alert("hello "+$("#prompt").val());
+ }
+ })
+ });
+</script>
+</p>
+
+<p>code for Prompt dialog:</p>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+  $("#prompt1").click(function(e){
+  e.preventDefault();
+ $.fn.tdialog({
+ type:"prompt",
+ title:'Name',
+ content:"enter your name",
+ promptCallback:function(){
+ alert("hello "+$("#prompt").val());
+ }
+ })
+ });
+&lt;/script&gt;
+</pre>
+<p>
+<a href="#" id="error1">click here to open a error dialog</a>
+<script language="javascript">
+$("#error1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"error",
+ content:"Fatal error.",
+ title:"oops",
+ icon:"error"
+});
+});
+</script>
+</p>
+<p>
+code for error dialog
+</p>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+$("#error1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"error",
+ content:"Fatal error.",
+ title:"oops",
+ icon:"error"
+});
+});
+&lt;/script&gt;
+</pre>
+
+<p class="note">Use of custom Buttons and callbacks</p>
+
+<p>You can create custom buttons and attached them with custom callback functions.</p>
+
+<p>
+<a href="#" id="custombuttons1">click here to open dialog with custom buttons</a>
+ </p>
+<script language="javascript">
+$("#custombuttons1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+type:"info",
+content:"Custom buttons example",
+buttons	: {
+				Yes	: {
+					button_class	: 'blue',
+					action: function(){
+						alert('yes');
+					}
+				},
+				No	: {
+					button_class	: 'gray',
+					action: function(){
+					alert('no');
+					}	// Nothing to do in this case. You can as well omit the action property.
+				}
+			},
+			
+icon:'info'	,
+showMinimize:true		
+ });
+ });
+
+</script>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+$("#custombuttons1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+type:"info",
+content:"Custom buttons example",
+buttons	: {
+				Yes	: {
+					button_class	: 'blue',
+					action: function(){
+						alert('yes');
+					}
+				},
+				No	: {
+					button_class	: 'gray',
+					action: function(){
+					alert('no');
+					}	// Nothing to do in this case. You can as well omit the action property.
+				}
+			},
+			
+icon:'info'	,
+showMinimize:true		
+ });
+ });
+&lt;/script&gt;
+</pre>
+
+<p class="note">Open windows</p>
+<p> You can also create windows using "type" parameter:</p>
+<a href="#" id="bigwindow1">click here to open Screen size window</a>
+<script language="javascript">
+ $("#bigwindow1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<iframe src='http://tikslus.com' width=98% height='90%' scrolling=no frameborder=0></iframe>",
+ width:$.fn.tdialog.tScreenWidth(150),
+ height:$.fn.tdialog.tScreenHeight(150),
+ position:'center',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#bigwindow1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"&lt;iframe src='http://tikslus.com' width=98% height='90%' scrolling=no frameborder=0&gt;&lt;/iframe&gt;",
+ width:$.fn.tdialog.tScreenWidth(150),
+ height:$.fn.tdialog.tScreenHeight(150),
+ position:'center',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+<p>YOu can show anything (pictures, iframe, videos, text) in a window.
+The above example opens an iframe in the window.</p>
+<p>
+you can make use of tikslus dialog's helper functions: $.fn.tdialog.tScreenWidth,$.fn.tdialog.tScreenHeight to open full sized windows.
+these functions take single parameter that acts as an offset from horizontal and vertical positions.
+For example, in the above example, $.fn.tdialog.tScreenWidth(150) and $.fn.tdialog.tScreenHeight(150) will draw a window having total width same as 
+screen width - 150 pixels.
+</p>
+
+
+<a href="#" id="bigwindow2">click here to open an image in window</a>
+<script language="javascript">
+ $("#bigwindow2").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center',
+ icon:'lock',
+   effect:'css3',
+ css3EffectIn:'fly-in',
+ css3EffectOut:'fly-out',
+		
+ })
+ 
+
+ });
+</script>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#bigwindow2").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center',
+ icon:'lock',
+   effect:'css3',
+ css3EffectIn:'fly-in',
+ css3EffectOut:'fly-out',
+		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+
+<a href="#" id="bigwindow3">click here to open YOUTUBE video in window</a>
+<script language="javascript">
+ $("#bigwindow3").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'Video from YOUTUBE',
+ content:'<iframe width="560" height="315" src="http://www.youtube.com/embed/X7mOzWQSnaQ" frameborder="0" allowfullscreen></iframe>',
+ width:560,
+ height:315,
+ position:'center',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#bigwindow3").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'Video from YOUTUBE',
+ content:'&lt;iframe width="560" height="315" src="http://www.youtube.com/embed/X7mOzWQSnaQ" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;',
+ width:560,
+ height:315,
+ position:'center',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+
+&lt;/script&gt;
+</pre>
+<p class="note">The <b>position</b> Parameter</p>
+<p>
+Position parameter can take following values:
+<ul>
+<li>center</li>
+<li>top</li>
+<li>bottom</li>
+</li>top left</li>
+<li>bottom left</li>
+<li>top right</li>
+<li>bottom right</li>
+<li>center left</li>
+<li>center right</li>
+</ul>
+</p>
+<p>Examples:</p>
+<a href="#" id="poscenter">center</a>
+<script language="javascript">
+ $("#poscenter").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+
+<a href="#" id="postop">top</a>
+<script language="javascript">
+ $("#postop").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'top',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+
+<a href="#" id="posbottom">bottom</a>
+<script language="javascript">
+ $("#posbottom").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'bottom',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+
+
+<a href="#" id="postopleft">top left</a>
+<script language="javascript">
+ $("#postopleft").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'top',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+
+<a href="#" id="posbottomleft">bottom left</a>
+<script language="javascript">
+ $("#posbottomleft").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'bottom left',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+
+<a href="#" id="postopright">top right</a>
+<script language="javascript">
+ $("#posbottom").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'top right',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+
+<a href="#" id="posbottomright">bottom right</a>
+<script language="javascript">
+ $("#posbottomright").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'bottom right',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+
+
+<a href="#" id="poscenterleft">center left</a>
+<script language="javascript">
+ $("#poscenterleft").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center left',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+
+<a href="#" id="poscenterright">center right</a>
+<script language="javascript">
+ $("#poscenterright").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center right',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#poscenterright").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center right',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+
+<p class="note">The <b>effect</b> Parameter</p>
+<p>
+effect parameter can take following values:
+<ul>
+<li>fade</li>
+<li>slide</li>
+<li>slide left</li>
+<li>slide right</li>
+</ul>
+You can experiment effect parameter with position parameter.
+</p>
+<p>Examples:</p>
+<a href="#" id="effect1">slide window from top and stop at center</a>
+<script language="javascript">
+ $("#effect1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center left',
+ effect: 'slide',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#effect1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center left',
+ icon:'lock',
+ effect:'slide'
+		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+
+<a href="#" id="effect2">slide window from top to bottom</a>
+<script language="javascript">
+ $("#effect2").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'bottom',
+ effect: 'slide',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+</script>
+
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#effect2").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'bottom',
+ icon:'lock',
+ effect:'slide'
+		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+
+<a href="#" id="effect3">slide window from right to left with position bottom</a>
+<script language="javascript">
+ $("#effect3").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'bottom',
+ effect: 'slide left',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+ </script>
+ <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#effect3").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'bottom',
+ icon:'lock',
+ effect:'slide left'
+		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+
+<a href="#" id="effect4">slide window from center left</a>
+<script language="javascript">
+ $("#effect4").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center left',
+ effect:'slide right',
+ icon:'lock',
+		
+ })
+ 
+
+ });
+ </script>
+ <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#effect4").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'This is a window',
+ content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center left',
+ icon:'lock',
+ effect:'slide right'
+		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+
+ 
+ <p class="note">Using CSS3 transition effects</p>
+ <p>We have also created some predefined CSS3 effects: rotate-in,roate-out,bench-in,bench-out,fly-in,fly-out,slideExpandUp,expandUp,bigEntrance,bounce,flipX,flipY.</p>
+    <p>You can also use other CSS3 animations (like <a href='http://daneden.github.io/animate.css/' target='_new'>animate.css</a>)</p>
+    <p>To use CSS3 transition effects. set parameter 'effect' to 'css3'</p>
+    <p>You can use transitions for the dialog entrance and exit. </p>
+     <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#titleless").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+  content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center',
+ icon:'lock',
+ effect:'css3',
+title:'css3 effects',
+ css3EffectIn:'fly-in',
+ css3EffectOut:'fly-out'
+ 
+		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+
+    <p> You need to set 'css3EffectIn' parameter for the entrace effect and 'css3EffectOut' parameter for the exit effect </p>    
+    
+    <p>Examples</p>
+    <ul>
+        <li><a href="#" class='css3effect' effectin='rotate-in' effectout='rotate-out'>Rotate In and Rotate Out</a></li>
+        <li><a href="#" class='css3effect' effectin='bench-in' effectout='bench-out'>Bench In and Bench Out</a></li>
+        <li><a href="#" class='css3effect' effectin='fly-in' effectout='fly-out'>Fly In and Fly Out</a></li>
+        <li><a href="#" class='css3effect' effectin='slideExpandUp' effectout='fly-out'>slideExpandUp</a></li>
+         <li><a href="#" class='css3effect' effectin='expandUp' effectout='rotate-out'>expandUp</a></li>
+          <li><a href="#" class='css3effect' effectin='bigEntrance' effectout='rotate-out'>bigEntrance</a></li>
+           <li><a href="#" class='css3effect' effectin='bounce' effectout='rotate-out'>bounce</a></li>
+           <li><a href="#" class='css3effect' effectin='flipX' effectout='rotate-out'>flipX</a></li>
+           <li><a href="#" class='css3effect' effectin='flipY' effectout='rotate-out'>flipY</a></li>
+    </ul>
+ 
+    <script language="javascript">
+ $(".css3effect").click(function(e){
+e.preventDefault();
+var effectin=$(this).attr("effectin");
+var effectout=$(this).attr("effectout");
+$.fn.tdialog({
+ type:"window",
+ title:"CSS3 EFFECTS",
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+  effect:'css3',
+ icon:'lock',
+ css3EffectIn:effectin,
+ css3EffectOut:effectout
+ 
+		
+ });
+ 
+
+ });
+ </script>
+    
+    
+ 
+<p class="note">Create Title less dialog box</p>
+<p>Set <b>titleBar</b> to <b>false</b>
+
+<a href="#" id="titleless">title-less window dialog</a>
+<script language="javascript">
+ $("#titleless").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ titleBar:false,
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center',
+ effect:'fade',
+ icon:'lock'
+		
+ })
+ 
+
+ });
+ </script>
+ <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#titleless").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+  content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center',
+ icon:'lock',
+ effect:'fade',
+ titleBar:false
+		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+ 
+ 
+ <a href="#" id="tlessconfirmation">click here to open title-less confirmation dialog</a>
+<script language="javascript">
+$("#tlessconfirmation").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"confirm",
+ content:"Are you sure, you will use tikslus dialog ?",
+ icon:"confirm",
+ confirmCallback:function(){
+
+$.fn.tdialog({
+type:'info',
+content:'Hey, thanks for your support.',
+title:'Thanks',
+icon:'info'
+
+})
+ },
+titleBar:false 
+});
+});
+</script>
+
+<pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+$("#tlessconfirmation").click(function(){
+$.fn.tdialog({
+ type:"confirm",
+ content:"Are you sure, you will use tikslus dialog ?",
+ icon:"confirm",
+ confirmCallback:function(){
+
+$.fn.tdialog({
+type:'info',
+content:'Hey, thanks for your support.',
+title:'Thanks',
+icon:'info'
+
+})
+ },
+ titleBar:false
+});
+});
+&lt;/script&gt;
+</pre>
+
+<p class="note">Create Button less dialog box</p>
+<p>Set <b>showButtons</b> to <b>false</b>
+
+<a href="#" id="buttonless1">button-less window dialog</a>
+<script language="javascript">
+ $("#buttonless1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'click background overlay to close window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center',
+ effect:'fade',
+ icon:'lock',
+ showButtons:false
+		
+ })
+ 
+
+ });
+ </script>
+ <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#buttonless1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+  content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center',
+  title:'click background overlay to close window',
+ icon:'lock',
+ effect:'fade',
+showButtons:false
+		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+<p><b>autoCloseInterval</b> and <b>autoClose</b> parameters</p>
+<p>Autoclose any window by setting autoCloseInterval and autoClose paramters</p>
+<a href="#" id="autoclose1">autoclose window dialog in 3 seconds</a>
+<p>set autoCloseInterval to 3000 to close window in 3 seconds</p>
+<script language="javascript">
+ $("#autoclose1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'click background overlay to close window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center',
+ effect:'fade',
+ icon:'lock',
+ showButtons:false,
+ autoClose:true,
+ autoCloseInterval:3000
+		
+ })
+ 
+
+ });
+ </script>
+ 
+  <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#autoclose1").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+  content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center',
+  title:'click background overlay to close window',
+ icon:'lock',
+ effect:'fade',
+showButtons:false,
+ autoClose:true,
+ autoCloseInterval:3000		
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+<p class="note"><b>showClose</b> Parameter</p>
+<p>
+You can toggle <b>close button</b> (button with 'x') by setting <b>showClose</b> paramter.
+By default this is set to <b>true</b>. To hide this button, set it's value to <b>false</b>
+</p>
+<p>
+<a href="#" id="hideclose">hide close button example</a>
+</p>
+<script language="javascript">
+ $("#hideclose").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'click background overlay to close window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center',
+ effect:'fade',
+ icon:'lock',
+ showButtons:false,
+showClose:false
+		
+ })
+ 
+
+ });
+ </script>
+ 
+  <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#hideclose").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+  content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center',
+  title:'click background overlay to close window',
+ icon:'lock',
+ effect:'fade',
+showButtons:false,
+showClose:false
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+
+
+<p class="note"><b>showMinimize</b> Parameter</p>
+<p>
+You can show minimize button on the dialog by setting <b>showMinimize</b> paramter to <b>true</b>.
+By default this is set to <b>false</b>.
+</p>
+<p>
+<a href="#" id="showminimize">showMinimize example</a>
+</p>
+<script language="javascript">
+ $("#showminimize").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'click background overlay to close window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center',
+ effect:'fade',
+ icon:'lock',
+ showButtons:false,
+showMinimize:true
+		
+ })
+ 
+
+ });
+ </script>
+ 
+  <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#showminimize").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+  content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center',
+  title:'click background overlay to close window',
+ icon:'lock',
+ effect:'fade',
+ showButtons:false,
+showMinimize:true
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+<p class="note" ><b>draggable</b> parameter.</p>
+<p>You can drag a dialog by clicking and dragging on to it's <b>title bar</b>.
+By default, this is set to <b>true</b>. Dialog having no title bar can't be dragged.
+</p>
+
+<a href="#" id="drag">draggable parameter example</a>
+<script language="javascript">
+$("#drag").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"info",
+ content:"click on title bar and try to drag this dialog.",
+ title:"draggable example",
+ icon:"info",
+ draggable:true,
+ showButtons:false
+});
+});
+</script>
+  <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+$("#drag").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"info",
+ content:"click on title bar and try to drag this dialog.",
+ title:"draggable example",
+ icon:"info",
+ draggable:true,
+ showButtons:false
+});
+});
+&lt;/script&gt;
+</pre>
+
+
+<p>
+<a href="#" id="showminimize">showMinimize example</a>
+</p>
+<script language="javascript">
+ $("#showminimize").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+ title:'click background overlay to close window',
+ content:"<img src='example.jpg' border='0'/>",
+ width:450,
+ height:306,
+ position:'center',
+ effect:'fade',
+ icon:'lock',
+ showButtons:false,
+showMinimize:true
+		
+ })
+ 
+
+ });
+ </script>
+ 
+  <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#showminimize").click(function(e){
+e.preventDefault();
+$.fn.tdialog({
+ type:"window",
+  content:"&lt;img src='images/example.jpg' border='0'/&gt;",
+ width:450,
+ height:306,
+ position:'center',
+  title:'click background overlay to close window',
+ icon:'lock',
+ effect:'fade',
+ showButtons:false,
+showMinimize:true
+ })
+ 
+
+ });
+&lt;/script&gt;
+</pre>
+
+<p>
+You can also use jquery callback function to return and set any value in 'content' parameter.
+For example, we will create a &lt;div&gt; and inside that we will print all the transation of 'hello world' string.
+Then we will use jquery function to return html code of this div to 'content' parameter.
+the DIV we have created is as follows:
+<pre>
+&lt;div id="hello_world" style="display:none"&gt;
+&lt;ul&gt;
+&lt;li&gt;English: hello world&lt;/li&gt;
+&lt;li&gt;Spanish: hola mundo&lt;/li&gt;
+&lt;li&gt;French:  Bonjour tout le monde&lt;/li&gt;
+&lt;li&gt;German: Hallo Welt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+<p>we will show UL content in window using jquery callback function<p>
+
+</p>
+
+<p>
+<a href="#" id="helloworld1">click here to view example of jquery callback function as content</a>
+<script language="javascript">
+ $("#helloworld1").click(function(e){
+  e.preventDefault();
+ $.fn.tdialog({
+ type:"window",
+ title:'jquery function as content',
+ width:200,
+ height:200,
+ content:function(){
+ return $("#hello_world").html();
+ }
+  })
+ });
+</script>
+</p>
+  <pre style="width:100%;border:1px solid #dddddd;">
+&lt;script language="javascript"&gt;
+ $("#helloworld1").click(function(e){
+  e.preventDefault();
+ $.fn.tdialog({
+ type:"window",
+ title:'jquery function as content',
+ width:200,
+ height:200,
+ content:function(){
+ return $("#hello_world").html();
+ }
+  })
+ });
+&lt;/script&gt;
+</pre>
+<p class="note">List of parameters you can pass to tikslusdialog function</p>
+<Br/>
+
+<div id="param_wrapper" >
+<div id="inner_wrapper">
+<table>
+<th>#</th><th>parameter</th><th>description</th><th>default value</th><th>value range</th>
+<tr>
+<td>1.</td><td>type</td><td>type of window: can be window,prompt,alert,warning,error,info,confirm. It must be given inside double or single quotes.</td><td>window</td>
+<td>can be<ul><li>window</li><li>prompt</li><li>alert</li><li>warning</li><li>error</li><li>info</li><li>confirm</li></ul></td>
+</tr>
+
+<tr>
+<td>2.</td><td>icon</td><td>Icons can be displayed in title bar. It must be given inside double or single quotes.</td><td>not set (blank)</td>
+<td>can be <ul><li> help</li><li>info</li><li>error</li><li>warning</li><li>confirm</li><li>lock</li><li>alert</li><li>chat</li><li>clock</li><li>form</li></ul> </td>
+</tr>
+
+<tr>
+<td>3.</td><td>title</td><td>title to be displayed in title bar. It must be given inside double or single quotes.</td><td>not set (blank)</td>
+<td>can be any text or string</td>
+</tr>
+
+<tr>
+<td>4.</td><td>content</td><td>Content to be displayed in the dialog/window. It can be any text,image,videos,iframe,html code,google maps etc. It must be given inside double or single quotes.</td><td>not set (blank)</td>
+<td>It can be any text,image,videos,iframe,html code,google maps etc. <b>You can also return valid jquery function value as content.</b> </td>
+</tr>
+
+<tr>
+<td>5.</td><td>promptCallback</td><td>callback function that is called when OK button is pressed in PROMPT dialog box.</td><td>not set (blank)</td>
+<td>must be a valid jquery function definition. example: <pre>
+promptCallback:function(){
+ alert("hello "+$("#prompt").val());
+ }
+ </pre>
+ </td>
+</tr>
+
+<tr>
+<td>6.</td><td>confirmCallback</td><td>callback function that is called when CONFIRM button is pressed in confirm dialog box.</td><td>not set (blank)</td>
+<td>must be a valid jquery function definition. example:
+<pre>
+confirmCallback:function(){
+ alert("you clicked confirm button");
+ }
+</pre>
+ </td>
+</tr>
+
+<tr>
+<td>7.</td><td>position</td><td>Position of the dialog/window on the screen.It must be given inside double or single quotes.</td><td>center</td>
+<td>can be <ul> <li>center</li><li>top</li><li>bottom</li><li>top left</li><li>bottom left</li><li> top right</li><li> bottom right</li><li>center left</li><li> center right </li></ul> </td>
+</tr>
+
+<tr>
+<td>8.</td><td>effect</td><td>Animation effect for the window/dialog.
+    <p>Tikslus Dialog can be used with predefined or CSS3 transition effects.</p>
+    <p>Predefined Transition effects are: fade,slide,slide left,slide right</p>
+    <p>We have also created some predefined CSS3 effects: rotate-in,roate-out,bench-in,bench-out,fly-in,fly-out,slideExpandUp,expandUp,bigEntrance,bounce,flipX,flipY.</p>
+    <p>You can also use other CSS3 animations (like <a href='http://daneden.github.io/animate.css/' target='_new'>animate.css</a></p>
+</td><td>fade</td>
+<td>can be <ul>
+<li>fade</li>
+<li>slide</li>
+<li>slide left</li>
+<li>slide right</li>
+</ul> </td>
+</tr>
+
+<tr>
+<td>9.</td><td>titleBar</td><td>decides whether to show or hide title bar in the window. It takes boolean value (true or false)</td><td>true</td>
+<td>can be <ul><li>true</li><li>false</li></ul></td>
+</tr>
+
+<tr>
+<td>10.</td><td>showButtons</td><td>decides whether to show or hide buttons. For example, OK button on INFO dialog.</td><td>true</td>
+<td>can be <ul><li>true</li><li>false</li></ul></td>
+</tr>
+
+<tr>
+<td>11.</td><td>showOverlay</td><td>decides whether to show or hide background overlay. It takes boolean value(true or false)</td><td>true</td>
+<td>can be <ul><li>true</li><li>false</li></ul></td>
+</tr>
+
+<tr>
+<td>12.</td><td>closeKey</td><td>use <b>ESC</b> key from keyboard to close dialog. It takes boolean value(true or false)</td><td>true</td>
+<td>can be <ul><li>true</li><li>false</li></ul></td>
+</tr>
+
+<tr>
+<td>14.</td><td>closeOverlay</td><td>close dialog on clicking overlay. It takes boolean value(true or false)</td><td>true</td>
+<td>can be <ul><li>true</li><li>false</li></ul></td>
+</tr>
+
+
+<tr>
+<td>15.</td><td>autoClose</td><td>automatically close window/dialog without user interference. based on time interval. It takes boolean value(true or false)</td><td>false</td>
+<td>can be <ul><li>true</li><li>false</li></ul></td>
+</tr>
+
+<tr>
+<td>16.</td><td>autoCloseInterval</td><td>This works with <b>autoClose</b> parameter.</td><td>3000 (3 minutes)</td>
+<td>can be any numeric value. 1000 means 1 minute.</td>
+</tr>
+
+<tr>
+<td>17.</td><td>animationSpeed</td><td>Time interval used as 'delay' in animation effects.</td><td>300 milliseconds</td>
+<td>can be any numeric value. 1000 means 1 minute.</td>
+</tr>
+
+<tr>
+<td>18.</td><td>draggable</td><td>Allow dragging of window/dialog. To drag dialog/window press left mouse button and try to move dialog. It won't work if you have set <b>titleBar</b> to false.</td><td>true</td>
+<td>can be <ul><li>true</li><li>false</li></ul></td>
+</tr>
+
+<tr>
+<td>19.</td><td>showClose</td><td>decides whether to show or hide close button (button with 'x') on title bar.</td><td>true</td>
+<td>can be <ul><li>true</li><li>false</li></ul></td>
+</tr>
+
+<tr>
+<td>20.</td><td>showMinimize</td><td>decides whether to show or hide minimize button (button with '-') on title bar.</td><td>false</td>
+<td>can be <ul><li>true</li><li>false</li></ul></td>
+</tr>
+
+</table>
+</div>
+</div>
+
+<div id="hello_world" style="display:none">
+<ul>
+<li>English: hello world</li>
+<li>Spanish: hola mundo</li>
+<li>French:  Bonjour tout le monde</li>
+<li>German: Hallo Welt</li>
+</ul>
+</div>
+	
+		
+
+</body>
+
+
+
+
+</html>
