@@ -1,0 +1,48 @@
+{
+  "name": "tikslusdialog",
+  "title": "Tikslus Dialog modal popup dialogs. Shown any html content in popup ",
+  "version": "1.0.0",
+  "description": "Tiklsus dialog is a jquery plugin which can show any HTML content(plain text,tables,videos,pictures) inside a popup box. It also support alert,confirmation and prompt dialog creation. you can animate tikslus dialog with different transition effects. you can also create dialogs with custom buttons.",
+  "homepage": "http://tikslus.com/plugins/free#tikslusdialog",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pushpendra10/tikslusdialog.git"
+  },
+  "keywords": [
+    "modal",
+    "jQuery",
+    "popup",
+    "youtube",
+    "video",
+    "image",
+	"myspace",
+	"vimeo",
+	"overlay",
+	"box",
+	"css3",
+	"animations",
+	"confirmation",
+	"prompt",
+	"alert",
+	"error",
+	"warning"
+	
+  ],
+  "author": {
+    "name": "Pushpendra Singh Chouhan",
+    "email": "pushpendra.as400@gmail.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/pushpendra10/tikslusdialog/blob/master/mit-license.txt"
+    }
+  ],
+  "bugs": "https://github.com/pushpendra10/tikslusdialog/issues",
+  "download": "http://tikslus.com/web/bundles/tikslustikslus/downloads/tikslusdialog.zip",
+  "demo" : "http://tikslus.com/tikslusdialog/demo",
+  "docs" : "http://tikslus.com/tikslusdialog/demo",
+  "dependencies": {
+    "jquery": ">=1.3"
+  }
+}
